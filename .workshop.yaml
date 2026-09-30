@@ -1,0 +1,16 @@
+name: torx
+base: ubuntu@24.04
+sdks:
+  - name: uv
+    channel: latest/stable
+
+  - name: copilot
+    channel: latest/stable
+
+  - name: node
+    channel: latest/stable
+
+actions:
+
+  copilot: |
+    copilot --yolo 
