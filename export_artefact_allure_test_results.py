@@ -273,6 +273,27 @@ def parse_args() -> argparse.Namespace:
         help="Filter by artefact name. Repeatable.",
     )
     p.add_argument(
+        "--artefact-versions",
+        dest="artefact_versions",
+        action="append",
+        metavar="NAME",
+        help="Filter by artefact versions. Repeatable.",
+    )
+    p.add_argument(
+        "--artefact-stages",
+        dest="artefact_stages",
+        action="append",
+        metavar="NAME",
+        help="Filter by artefact stages. Repeatable.",
+    )
+    p.add_argument(
+        "--artefact-tracks",
+        dest="artefact_tracks",
+        action="append",
+        metavar="NAME",
+        help="Filter by artefact tracks. Repeatable.",
+    )
+    p.add_argument(
         "--environment",
         dest="environments",
         action="append",
@@ -294,6 +315,13 @@ def parse_args() -> argparse.Namespace:
         metavar="STATUS",
         choices=["NOT_STARTED", "IN_PROGRESS", "PASSED", "FAILED", "NOT_TESTED", "ENDED_PREMATURELY"],
         help="Filter by parent execution status. Repeatable.",
+    )
+    p.add_argument(
+        "--test-plans",
+        dest="test_plans",
+        action="append",
+        metavar="NAME",
+        help="Filter by test plan name. Repeatable.",
     )
     p.add_argument(
         "--test-case",
@@ -347,12 +375,20 @@ def main() -> None:
         extra_params["families"] = args.families
     if args.artefacts:
         extra_params["artefacts"] = args.artefacts
+    if args.artefact_versions:
+        extra_params["artefact_versions"] = args.artefact_versions
+    if args.artefact_stages:
+        extra_params["artefact_stages"] = args.artefact_stages
+    if args.artefact_tracks:
+        extra_params["artefact_tracks"] = args.artefact_tracks
     if args.environments:
         extra_params["environments"] = args.environments
     if args.test_result_statuses:
         extra_params["test_result_statuses"] = args.test_result_statuses
     if args.test_execution_statuses:
         extra_params["test_execution_statuses"] = args.test_execution_statuses
+    if args.test_plans:
+        extra_params["test_plans"] = args.test_plans 
     if args.test_cases:
         extra_params["test_cases"] = args.test_cases
     if args.template_ids:
